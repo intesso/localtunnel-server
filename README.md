@@ -53,6 +53,16 @@ Create a new tunnel. A LocalTunnel client posts to this enpoint to request a new
 
 General server information.
 
+### GET /api/tunnels/:id/status
+
+Status information of tunnel with id
+
+### DELETE /api/tunnels/:id
+
+> auth with secret
+
+delete tunnel with id
+
 ## Deploy
 
 You can deploy your own localtunnel server using the prebuilt docker image.

@@ -50,6 +50,25 @@ export default function(opt) {
         };
     });
 
+    router.delete('/api/tunnels/:id', async (ctx, next) => {
+        const clientId = ctx.params.id;
+        const client = manager.getClient(clientId);
+        if (!client) {
+            ctx.throw(404);
+            return;
+        }
+        if (ctx.query.secret !== process.env.SECRET) {
+            ctx.throw(401);
+            return;
+        }
+        const stats = client.stats();
+        ctx.body = {
+            connected_sockets: stats.connectedSockets,
+            client_removed: true
+        };
+        client.removeClient(clientId)
+    });
+
     app.use(router.routes());
     app.use(router.allowedMethods());
 
