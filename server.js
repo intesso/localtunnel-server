@@ -61,7 +61,7 @@ export default function(opt) {
             ctx.throw(401);
             return;
         }
-        client.removeClient(clientId);
+        manager.removeClient(clientId);
         const stats = client.stats();
         ctx.body = {
             connected_sockets: stats.connectedSockets,
